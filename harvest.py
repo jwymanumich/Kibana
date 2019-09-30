@@ -11,7 +11,7 @@ day   = "26"
 #http://kibanaapplogsprod-us.trtaprofdevops.services/_plugin/kibana/app/kibana#/discover?_g=(refreshInterval:('$$hashKey':'object:3651',display:Off,pause:!f,section:0,value:0),time:(from:'2019-09-27T12:40:33.380Z',mode:absolute,to:'2019-09-27T13:59:33.380Z'))&_a=(columns:!(_source),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'onvio-*',key:fields.Application,negate:!f,params:(query:DocumentServices,type:phrase),type:phrase,value:DocumentServices),query:(match:(fields.Application:(query:DocumentServices,type:phrase)))),('$state':(store:appState),meta:(alias:!n,disabled:!t,index:'onvio-*',key:method,negate:!f,params:(query:OnBeginRequest,type:phrase),type:phrase,value:OnBeginRequest),query:(match:(method:(query:OnBeginRequest,type:phrase))))),index:'onvio-*',interval:auto,query:(language:lucene,query:'%22i-0de30c0830116fb8e%22%20AND%20(OnBeginRequest%20OR%20OnEndRequest)'),sort:!('@timestamp',asc))
 msearch = 'http://kibanaapplogsprod-us.trtaprofdevops.services/_plugin/kibana/elasticsearch/_msearch'
 outfilename = "outfile.{1}.{0}.{2}.json".format(month, year, day)
-date_time_start = '{0}.{1}.{2} 08:30:01'.format(day, month, year)
+date_time_start = '{0}.{1}.{2} 00:00:01'.format(day, month, year)
 pattern = '%d.%m.%Y %H:%M:%S'
 epoch_start = int(time.mktime(time.strptime(date_time_start, pattern)))
 epoch_start_ms = int(round(epoch_start * 1000)) + 1
@@ -71,7 +71,7 @@ total_items = 0
 while(start_date_ms < epoch_end_ms):
 
     try:
-        end_date_ms = start_date_ms+300*1000
+        end_date_ms = start_date_ms+150*1000
 
         print("start " + datetime.datetime.fromtimestamp(start_date_ms/1000).strftime('%Y-%m-%d %H:%M:%S'))
         print("end "   + datetime.datetime.fromtimestamp(end_date_ms/1000).strftime('%Y-%m-%d %H:%M:%S'))
